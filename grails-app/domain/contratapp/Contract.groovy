@@ -23,9 +23,7 @@ class Contract {
 
     Boolean isAccepted(){
         for(Condition condition : conditions){
-            if(!condition.isAccepted()){
-                return false
-            }
+            if(!condition.isAccepted()) return false
         }
         return true
     }
@@ -44,7 +42,10 @@ class Contract {
             for(Condition condition : conditions){
                 total += condition.complete()
             }
+            promisee.unblock()
             promisee.addBalance(total)
-        }  else { throw new Exception("Cant complete an invalid contract")}
+        }  else {
+            promisee.block()
+            throw new Exception("Cant complete an invalid contract")}
     }
 }

@@ -15,17 +15,27 @@ class User {
     public String name
     public String location
     public SocialNetwork socialNetwork
-    public String category
-    private BigDecimal balance
+    public BigDecimal balance
     private List<Preference> preferences
+    private Boolean blocked
 
-    User(String name, String location, SocialNetwork socialNetwork, String category) {
+    User(String name, String location, SocialNetwork socialNetwork) {
         this.name = name
         this.location = location
         this.socialNetwork = socialNetwork
         this.balance = 0
         this.preferences = new ArrayList<Preference>()
-        this.category = category
+        this.blocked = false
+    }
+
+    void block() {
+        this.blocked = true
+    }
+    void unblock() {
+        this.blocked = false
+    }
+    Boolean isBlocked() {
+        return this.blocked
     }
 
     void addBalance(BigDecimal amount){

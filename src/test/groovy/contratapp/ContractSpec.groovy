@@ -11,8 +11,8 @@ class ContractSpec extends Specification implements DomainUnitTest<Contract> {
     User nike
 
     def setup() {
-        joaco = new User("joaco", "CABA", User.SocialNetwork.INSTAGRAM, null)
-        nike = new User("nike", "CABA", User.SocialNetwork.INSTAGRAM, null)
+        joaco = new User("joaco", "CABA", User.SocialNetwork.INSTAGRAM)
+        nike = new User("nike", "CABA", User.SocialNetwork.INSTAGRAM)
     }
 
     def cleanup() {
@@ -54,7 +54,7 @@ class ContractSpec extends Specification implements DomainUnitTest<Contract> {
     void "Completar contrato valido con una condicion deposita cantidad valida en usuario"() {
         given:
         Condition firsCond = new Condition(3, "IG Stories", 1000 as BigDecimal)
-        Condition secondCond = new Condition(1, "IG Stories", 7000)
+        Condition secondCond = new Condition(1, "IG Stories", 7000 as BigDecimal)
         List<Condition> conditions = Arrays.asList(firsCond, secondCond)
         Contract contract = new Contract(nike, joaco, LocalDate.of(2022, 10, 28), conditions)
         firsCond.accept()
